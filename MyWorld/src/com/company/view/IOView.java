@@ -18,7 +18,7 @@ public class IOView {
         //just for having some users to work with them
         //to-do: create a JSON to import when boot soft
         //or just a DB
-        UserController.createFakeUsers();
+        //UserController.createFakeUsers();
         while (true) {
             //print mode menu
             Menu.modeMenu();
@@ -32,6 +32,7 @@ public class IOView {
             } else if (command.equals("release")) {
                 //We create this feature to release our soft
                 releaseLoopView(reader);
+                break;
             } else System.out.println("Unknown command");
         }
     }
@@ -45,17 +46,72 @@ public class IOView {
 
             if (command.equals("Exit")) {
                 break;
-            } else if (command.equals("createUser")) {
-                //call-operation to create new user
-                createUser(reader);
-            } else if (command.equals("createItem")) {
+            } else if (command.equals("Users")) {
+                //call secondary users menu-loop
+                releaseLoopUsersView(reader);
+                break;
+            } else if (command.equals("Items")) {
                 //call-operation to change pin
-                //changePin(reader);
-            } else if (command.equals("doLending")) {
+                releaseLoopItemsView(reader);
+                break;
+            } else if (command.equals("Lendings")) {
                 //call-operation to make a transfer
-                //transfer(reader);
+                releaseLoopLendingsView(reader);
+                break;
             } else System.out.println("Unknown command");
         }
+    }
+
+    public static void releaseLoopUsersView(Scanner reader) {
+        //users loop starting
+        while (true) {
+            //print users menu
+            Menu.usersMenu();
+            String command = Utilities.ask(reader, "Option?");
+
+            if (command.equals("Back")) {
+                break;
+            } else if (command.equals("Newuser")) {
+                //call-operation to create new user
+                //createUser(reader);
+            } else System.out.println("Unknown command");
+        }
+        releaseLoopView(reader);
+    }
+
+    public static void releaseLoopItemsView(Scanner reader) {
+        //users loop starting
+        while (true) {
+            //print users menu
+            Menu.itemsMenu();
+            String command = Utilities.ask(reader, "Option?");
+
+            if (command.equals("Back")) {
+                break;
+            } else if (command.equals("Newitem")) {
+                //call-operation to create new item
+                //createItem(reader);
+            } else System.out.println("Unknown command");
+        }
+        releaseLoopView(reader);
+    }
+
+    public static void releaseLoopLendingsView(Scanner reader) {
+        //users loop starting
+        while (true) {
+            //print users menu
+            Menu.lendingsMenu();
+            String command = Utilities.ask(reader, "Option?");
+
+            if (command.equals("Back")) {
+                releaseLoopView(reader);
+                break;
+            } else if (command.equals("Newlending")) {
+                //call-operation to create new lending
+                //createLending(reader);
+            } else System.out.println("Unknown command");
+        }
+        releaseLoopView(reader);
     }
 
     public static String createUser(Scanner reader) {
