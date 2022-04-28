@@ -43,20 +43,17 @@ public class IOView {
             Menu.mainMenu();
             String command = Utilities.ask(reader, "Option?");
 
-            if (command.equals("Quit")) {
+            if (command.equals("Exit")) {
                 break;
             } else if (command.equals("createUser")) {
                 //call-operation to create new user
                 createUser(reader);
-            } else if (command.equals("changePin")) {
+            } else if (command.equals("createItem")) {
                 //call-operation to change pin
-                changePin(reader);
-            } else if (command.equals("transfer")) {
+                //changePin(reader);
+            } else if (command.equals("doLending")) {
                 //call-operation to make a transfer
-                transfer(reader);
-            } else if (command.equals("deposit")) {
-                //call-operation to deposit some amount
-                deposit(reader);
+                //transfer(reader);
             } else System.out.println("Unknown command");
         }
     }
@@ -86,69 +83,6 @@ public class IOView {
         System.out.println("status user: " + createUserStatus + "\n");
 
         return createUserStatus;
-    }
-
-    public static String changePin(Scanner reader) {
-        //ask for card number and check if this card number exists within users
-        String cardNumber = Utilities.ask(reader, "Number Card?");
-        //just ask for new pin and set new pin to users-user-card-pin
-        String newPin = Utilities.ask(reader, "New Pin?");
-        HashMap<String, String> changePinRequest = new HashMap<>();
-        //fill data hashmap object
-        changePinRequest.put("operation", "changePin");
-        changePinRequest.put("cardNumber", cardNumber);
-        changePinRequest.put("newPin", newPin);
-
-        HashMap<String, String> changePinResponse = FrontController.mainLoopController(changePinRequest);
-        String changePinStatus = changePinResponse.get("status");
-        System.out.println("status user: " + changePinStatus + "\n" + changePinResponse.get("message"));
-
-        return changePinStatus;
-
-    }
-
-    public static String transfer(Scanner reader) {
-        //ask for card number and check if this card number exists within users
-        String originCardNumber = Utilities.ask(reader, "Origin Number Card?");
-        String destinationCardNumber = Utilities.ask(reader, "Destination Number Card?");
-        String amount = Utilities.ask(reader, "Amount?");
-
-        HashMap<String, String> transferRequest = new HashMap<>();
-        //fill data hashmap object
-        transferRequest.put("operation", "transfer");
-        transferRequest.put("originCardNumber", originCardNumber);
-        transferRequest.put("destinationCardNumber", destinationCardNumber);
-        transferRequest.put("amount", amount);
-
-        HashMap<String, String> transferResponse = FrontController.mainLoopController(transferRequest);
-        String transferStatus = transferResponse.get("status");
-        System.out.println("status transfer: " + transferStatus + "\n" + transferResponse.get("message"));
-
-        return transferStatus;
-
-    }
-
-    public static String deposit(Scanner reader) {
-        //ask for card number and check if this card number exists within users
-        String originCardNumber = Utilities.ask(reader, "Origin Number Card?");
-        String amount = Utilities.ask(reader, "Amount?");
-
-        HashMap<String, String> depositRequest = new HashMap<>();
-        //fill data hashmap object
-        depositRequest.put("operation", "deposit");
-        depositRequest.put("originCardNumber", originCardNumber);
-        depositRequest.put("amount", amount);
-
-        HashMap<String, String> depositResponse = FrontController.mainLoopController(depositRequest);
-        String depositStatus = depositResponse.get("status");
-        System.out.println("status deposit: " + depositStatus + "\n" + depositResponse.get("message"));
-
-        return depositStatus;
-
-    }
-
-    public static void loan(Scanner reader) {
-
     }
 
 }

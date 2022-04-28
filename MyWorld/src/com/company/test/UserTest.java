@@ -1,7 +1,6 @@
 package com.company.test;
 
 import com.company.controller.UserController;
-import com.company.model.Card;
 import com.company.model.User;
 import com.company.service.UserService;
 import com.company.view.IOView;

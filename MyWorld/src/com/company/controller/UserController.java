@@ -1,6 +1,5 @@
 package com.company.controller;
 
-import com.company.model.Card;
 import com.company.model.User;
 import com.company.service.UserService;
 
