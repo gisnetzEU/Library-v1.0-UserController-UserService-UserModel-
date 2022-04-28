@@ -5,7 +5,7 @@ import com.company.model.Ejemplar;
 import java.util.HashMap;
 
 public class EjemplarController {
-    static HashMap<int, Ejemplar> listsExemplars = new HashMap();
+    static HashMap<String, Ejemplar> listsExemplars = new HashMap();
 
     public static void createEjemplar(String titulo){
         Ejemplar ejemplar = new Ejemplar(titulo);

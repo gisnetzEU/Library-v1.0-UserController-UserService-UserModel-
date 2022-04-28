@@ -5,19 +5,19 @@ import java.util.Objects;
 
 public class Ejemplar {
 
-    private final int sku;
+    private final String sku;
     private String itemTitle;
     private final Date dateOfAdquisition;
 
     public Ejemplar (String itemTitle){
         dateOfAdquisition = new Date();
-        sku = Objects.hash(itemTitle, dateOfAdquisition);
+        sku = String.valueOf(Objects.hash(itemTitle, dateOfAdquisition));
         this.itemTitle = itemTitle;
 
     }
 
-    public int getSku() {
-        return sku;
+    public String getSku() {
+        return String.valueOf(this.sku);
     }
 
     public String getItemTitle() {
