@@ -9,4 +9,8 @@ public class Utilities {
         return reader.nextLine();
     }
 
+    public static void clearConsole() {
+        System.out.println(System.lineSeparator().repeat(100));
+    }
+
 }

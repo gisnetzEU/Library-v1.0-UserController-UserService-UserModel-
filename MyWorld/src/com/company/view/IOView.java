@@ -18,7 +18,7 @@ public class IOView {
         //just for having some users to work with them
         //to-do: create a JSON to import when boot soft
         //or just a DB
-        UserController.createFakeUsers();
+        //UserController.createFakeUsers();
         while (true) {
             //print mode menu
             Menu.modeMenu();
@@ -32,6 +32,7 @@ public class IOView {
             } else if (command.equals("release")) {
                 //We create this feature to release our soft
                 releaseLoopView(reader);
+                break;
             } else System.out.println("Unknown command");
         }
     }
@@ -43,22 +44,74 @@ public class IOView {
             Menu.mainMenu();
             String command = Utilities.ask(reader, "Option?");
 
-            if (command.equals("Quit")) {
+            if (command.equals("Exit")) {
                 break;
-            } else if (command.equals("createUser")) {
-                //call-operation to create new user
-                createUser(reader);
-            } else if (command.equals("changePin")) {
+            } else if (command.equals("Users")) {
+                //call secondary users menu-loop
+                releaseLoopUsersView(reader);
+                break;
+            } else if (command.equals("Items")) {
                 //call-operation to change pin
-                changePin(reader);
-            } else if (command.equals("transfer")) {
+                releaseLoopItemsView(reader);
+                break;
+            } else if (command.equals("Lendings")) {
                 //call-operation to make a transfer
-                transfer(reader);
-            } else if (command.equals("deposit")) {
-                //call-operation to deposit some amount
-                deposit(reader);
+                releaseLoopLendingsView(reader);
+                break;
             } else System.out.println("Unknown command");
         }
+    }
+
+    public static void releaseLoopUsersView(Scanner reader) {
+        //users loop starting
+        while (true) {
+            //print users menu
+            Menu.usersMenu();
+            String command = Utilities.ask(reader, "Option?");
+
+            if (command.equals("Back")) {
+                break;
+            } else if (command.equals("Newuser")) {
+                //call-operation to create new user
+                //createUser(reader);
+            } else System.out.println("Unknown command");
+        }
+        releaseLoopView(reader);
+    }
+
+    public static void releaseLoopItemsView(Scanner reader) {
+        //users loop starting
+        while (true) {
+            //print users menu
+            Menu.itemsMenu();
+            String command = Utilities.ask(reader, "Option?");
+
+            if (command.equals("Back")) {
+                break;
+            } else if (command.equals("Newitem")) {
+                //call-operation to create new item
+                //createItem(reader);
+            } else System.out.println("Unknown command");
+        }
+        releaseLoopView(reader);
+    }
+
+    public static void releaseLoopLendingsView(Scanner reader) {
+        //users loop starting
+        while (true) {
+            //print users menu
+            Menu.lendingsMenu();
+            String command = Utilities.ask(reader, "Option?");
+
+            if (command.equals("Back")) {
+                releaseLoopView(reader);
+                break;
+            } else if (command.equals("Newlending")) {
+                //call-operation to create new lending
+                //createLending(reader);
+            } else System.out.println("Unknown command");
+        }
+        releaseLoopView(reader);
     }
 
     public static String createUser(Scanner reader) {
@@ -86,69 +139,6 @@ public class IOView {
         System.out.println("status user: " + createUserStatus + "\n");
 
         return createUserStatus;
-    }
-
-    public static String changePin(Scanner reader) {
-        //ask for card number and check if this card number exists within users
-        String cardNumber = Utilities.ask(reader, "Number Card?");
-        //just ask for new pin and set new pin to users-user-card-pin
-        String newPin = Utilities.ask(reader, "New Pin?");
-        HashMap<String, String> changePinRequest = new HashMap<>();
-        //fill data hashmap object
-        changePinRequest.put("operation", "changePin");
-        changePinRequest.put("cardNumber", cardNumber);
-        changePinRequest.put("newPin", newPin);
-
-        HashMap<String, String> changePinResponse = FrontController.mainLoopController(changePinRequest);
-        String changePinStatus = changePinResponse.get("status");
-        System.out.println("status user: " + changePinStatus + "\n" + changePinResponse.get("message"));
-
-        return changePinStatus;
-
-    }
-
-    public static String transfer(Scanner reader) {
-        //ask for card number and check if this card number exists within users
-        String originCardNumber = Utilities.ask(reader, "Origin Number Card?");
-        String destinationCardNumber = Utilities.ask(reader, "Destination Number Card?");
-        String amount = Utilities.ask(reader, "Amount?");
-
-        HashMap<String, String> transferRequest = new HashMap<>();
-        //fill data hashmap object
-        transferRequest.put("operation", "transfer");
-        transferRequest.put("originCardNumber", originCardNumber);
-        transferRequest.put("destinationCardNumber", destinationCardNumber);
-        transferRequest.put("amount", amount);
-
-        HashMap<String, String> transferResponse = FrontController.mainLoopController(transferRequest);
-        String transferStatus = transferResponse.get("status");
-        System.out.println("status transfer: " + transferStatus + "\n" + transferResponse.get("message"));
-
-        return transferStatus;
-
-    }
-
-    public static String deposit(Scanner reader) {
-        //ask for card number and check if this card number exists within users
-        String originCardNumber = Utilities.ask(reader, "Origin Number Card?");
-        String amount = Utilities.ask(reader, "Amount?");
-
-        HashMap<String, String> depositRequest = new HashMap<>();
-        //fill data hashmap object
-        depositRequest.put("operation", "deposit");
-        depositRequest.put("originCardNumber", originCardNumber);
-        depositRequest.put("amount", amount);
-
-        HashMap<String, String> depositResponse = FrontController.mainLoopController(depositRequest);
-        String depositStatus = depositResponse.get("status");
-        System.out.println("status deposit: " + depositStatus + "\n" + depositResponse.get("message"));
-
-        return depositStatus;
-
-    }
-
-    public static void loan(Scanner reader) {
-
     }
 
 }
