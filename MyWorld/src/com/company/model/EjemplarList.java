@@ -16,10 +16,9 @@ public class EjemplarList {
 
     @Override
     public String toString(){
-        for (Ejemplar ejemplar : ejemplares){
 
-        }
-        return
+
+        return null;
     }
 
 
