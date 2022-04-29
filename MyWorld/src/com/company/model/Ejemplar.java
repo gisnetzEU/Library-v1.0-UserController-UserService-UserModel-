@@ -6,34 +6,47 @@ import java.util.Objects;
 public class Ejemplar {
 
     private final String sku;
-    private String itemTitle;
+    private String ejemplarTitle;
+    private String author;
     private final Date dateOfAdquisition;
 
     public Ejemplar (String itemTitle){
         dateOfAdquisition = new Date();
         sku = String.valueOf(Objects.hash(itemTitle, dateOfAdquisition));
-        this.itemTitle = itemTitle;
+        this.ejemplarTitle = itemTitle;
 
     }
 
     public String getSku() {
-        return String.valueOf(this.sku);
+        return sku;
     }
 
-    public String getItemTitle() {
-        return itemTitle;
+    public String getAuthor(){
+        return this.author;
     }
 
-    public void setItemTitle(String itemTitle) {
-        this.itemTitle = itemTitle;
+    public void setAuthor(String author){
+        this.author = author;
+    }
+
+    public String getEjemplarTitle() {
+
+        return ejemplarTitle;
+    }
+
+    public void setEjemplarTitle(String itemTitle) {
+
+        this.ejemplarTitle = itemTitle;
     }
 
     public Date getDateOfAdquisition() {
+
         return dateOfAdquisition;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.itemTitle, this.dateOfAdquisition);
+
+        return Objects.hash(this.ejemplarTitle, this.dateOfAdquisition);
     }
 }
