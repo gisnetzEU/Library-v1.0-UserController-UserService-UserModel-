@@ -73,7 +73,7 @@ public class IOView {
                 break;
             } else if (command.equals("Newuser")) {
                 //call-operation to create new user
-                //createUser(reader);
+                createUser(reader);
             } else System.out.println("Unknown command");
         }
         releaseLoopView(reader);
@@ -118,20 +118,20 @@ public class IOView {
         //Let s introduce data to create User's card
         String name = Utilities.ask(reader, "Name?");
         String surname = Utilities.ask(reader, "Surname?");
-        String age = Utilities.ask(reader, "Age?");
-        String number = Utilities.ask(reader, "Card Number?");
-        String amount = Utilities.ask(reader, "Amount?");
-        String type = Utilities.ask(reader, "Type?");
+        String birthdate = Utilities.ask(reader, "Birthdate?");
+        String address = Utilities.ask(reader, "Address?");
+        String email = Utilities.ask(reader, "Email?");
+        String phoneNumber = Utilities.ask(reader, "PhoneNumber?");
         //create hashmap to send data to controller
         HashMap<String, String> createUserRequest = new HashMap<>();
         //fill data hashmap object
         createUserRequest.put("operation", "createUser");
         createUserRequest.put("name", name);
         createUserRequest.put("surname", surname);
-        createUserRequest.put("age", age);
-        createUserRequest.put("cardNumber", number);
-        createUserRequest.put("amount", amount);
-        createUserRequest.put("cardType", type);
+        createUserRequest.put("birthdate", birthdate);
+        createUserRequest.put("address", address);
+        createUserRequest.put("email", email);
+        createUserRequest.put("phoneNumber", phoneNumber);
 
         //send data to controller and get the response
         HashMap<String, String> createUserResponse = FrontController.mainLoopController(createUserRequest);
