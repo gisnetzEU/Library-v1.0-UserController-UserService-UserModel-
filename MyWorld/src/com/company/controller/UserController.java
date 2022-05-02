@@ -14,13 +14,14 @@ public class UserController {
 
         String name = dataToCreateUser.get("name");
         String surname = dataToCreateUser.get("surname");
-        int age = Integer.parseInt(dataToCreateUser.get("age"));
-        long cardNumber = Long.parseLong((dataToCreateUser.get("cardNumber")));
-        double amount = Double.parseDouble(dataToCreateUser.get("amount"));
-        String cardType = dataToCreateUser.get("cardType");
+        String birthdate = dataToCreateUser.get("birthdate");
+        String address = dataToCreateUser.get("address");
+        String email = dataToCreateUser.get("email");
+        String phoneNumber = dataToCreateUser.get("phoneNumber");
+
 
         //Let s introduce data to create User
-       //User createdUser = new User(name, surname, age, new Card(cardNumber, amount, cardType));
+        //User createdUser = new User(name, surname, age, new Card(cardNumber, amount, cardType));
 
         //Let s add this new User object to the main (and just one) array
         //boolean statusOperation = users.add(createdUser);
@@ -33,11 +34,6 @@ public class UserController {
 
         return createUserResponse;
     }
-
-
-
-
-
 
 
     public static void loan() {

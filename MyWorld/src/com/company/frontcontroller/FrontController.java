@@ -14,6 +14,8 @@ public class FrontController {
         if (request.get("operation").equals("createUser")) response = UserController.createUser(request);
         //else if (request.get("operation").equals( "loan"))  UserController.loan(request);
 
+        //System.out.println(response);
+
         return response;
     }
 }
