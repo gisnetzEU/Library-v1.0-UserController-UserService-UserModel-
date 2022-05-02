@@ -18,8 +18,6 @@ public class LendingMap {
         return lendingList;
     }
 
-
-
     public void setLendingList(HashMap<String, Lending> lendingList) {
         this.lendingList = lendingList;
     }
