@@ -9,16 +9,17 @@ import java.util.HashMap;
 
 public class LendingController {
 
+    static HashMap<String, Lending> users = UserController.getUsers();
+    static HashMap<String, Lending> ejemplares = EjemplarController.getEjemplares();
     static HashMap<String, Lending> lendings = new LendingMap;
-
 
     public static HashMap<String, String> createLending(HashMap<String, String> request) {
 
         String userId = request.get("userId");
         String ejemplarId = request.get("ejemplarId");
 
-        User user = getUserById();
-        Ejemplar ejemplar = getEjemplarById();
+        User user = users.getUserById();
+        Ejemplar ejemplar = ejemplares.getEjemplarById();
 
         Lending newLending = new Lending(user, ejemplar);
         Lending statusOperation = lendings.put(String.valueOf(newLending.getLendingUuid()), newLending);

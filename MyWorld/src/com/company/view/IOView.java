@@ -145,7 +145,9 @@ public class IOView {
 
     private static String createLending(Scanner reader) {
         //Let s introduce data to create a Lending
+        //TODO mostrar usuarios enabled
         String userId = Utilities.ask(reader, "User Id?");
+        //TODO mostrar ejemplares disponibles
         String ejemplarId = Utilities.ask(reader, "Ejemplar Id?");
         HashMap<String, String> createLendingRequest = new HashMap<>();
 
