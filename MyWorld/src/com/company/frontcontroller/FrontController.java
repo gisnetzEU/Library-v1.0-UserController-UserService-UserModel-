@@ -1,5 +1,6 @@
 package com.company.frontcontroller;
 
+import com.company.controller.LendingController;
 import com.company.controller.UserController;
 
 import java.util.HashMap;
@@ -12,7 +13,7 @@ public class FrontController {
         response.put("status", "error");
         //
         if (request.get("operation").equals("createUser")) response = UserController.createUser(request);
-        //else if (request.get("operation").equals( "loan"))  UserController.loan(request);
+        else if (request.get("operation").equals( "createLending")) response = LendingController.createLending(request);
 
         //System.out.println(response);
 

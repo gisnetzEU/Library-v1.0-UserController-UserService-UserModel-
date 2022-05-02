@@ -1,11 +1,13 @@
 package com.company.model;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 public class Lending {
 
     public enum Status { ONDATE, OUTOFDATE, RETURNED }
 
+    private final UUID lendingUuid;
     private final User user;
     private final Ejemplar ejemplar;
     private final LocalDate lendingDate;
@@ -14,6 +16,7 @@ public class Lending {
     private Status status;
 
     public Lending(User user, Ejemplar ejemplar) {
+        this.lendingUuid = UUID.randomUUID();
         this.user = user;
         this.ejemplar = ejemplar;
         this.lendingDate = LocalDate.now();
@@ -68,4 +71,7 @@ public class Lending {
         return status;
     }
 
+    public UUID getLendingUuid() {
+        return lendingUuid;
+    }
 }

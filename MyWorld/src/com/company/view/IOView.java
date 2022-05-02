@@ -108,14 +108,16 @@ public class IOView {
                 break;
             } else if (command.equals("Newlending")) {
                 //call-operation to create new lending
-                //createLending(reader);
+                createLending(reader);
             } else System.out.println("Unknown command");
         }
         releaseLoopView(reader);
     }
 
+
+
     public static String createUser(Scanner reader) {
-        //Let s introduce data to create User's card
+        //Let s introduce data to create a User
         String name = Utilities.ask(reader, "Name?");
         String surname = Utilities.ask(reader, "Surname?");
         String birthdate = Utilities.ask(reader, "Birthdate?");
@@ -139,6 +141,25 @@ public class IOView {
         System.out.println("status user: " + createUserStatus + "\n");
 
         return createUserStatus;
+    }
+
+    private static String createLending(Scanner reader) {
+        //Let s introduce data to create a Lending
+        String userId = Utilities.ask(reader, "User Id?");
+        String ejemplarId = Utilities.ask(reader, "Ejemplar Id?");
+        HashMap<String, String> createLendingRequest = new HashMap<>();
+
+        //fill createLending request data hashmap object
+        createLendingRequest.put("operation", "createLending");
+        createLendingRequest.put("userId", userId);
+        createLendingRequest.put("ejemplarId", ejemplarId);
+
+        //send data to controller and get the createLending response
+        HashMap<String, String> createLendingResponse = FrontController.mainLoopController(createLendingRequest);
+        String createLendingStatus = createLendingResponse.get("status");
+        System.out.println("status lending: " + createLendingStatus + "\n");
+
+        return createLendingStatus;
     }
 
 }

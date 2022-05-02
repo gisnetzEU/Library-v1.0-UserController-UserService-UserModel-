@@ -35,11 +35,6 @@ public class UserController {
         return createUserResponse;
     }
 
-
-    public static void loan() {
-    }
-
-
     public static ArrayList<User> getFakeUsers() {
         return users;
     }
