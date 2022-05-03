@@ -48,8 +48,7 @@ public class UserController {
         users.addUser(newUser4);
     }
 
-
-    public static UserMap getFakeUsers() {
+    public static UserMap getUsers() {
         return users;
     }
 }

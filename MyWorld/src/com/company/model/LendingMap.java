@@ -14,6 +14,15 @@ public class LendingMap {
         this.lendingList = new HashMap<>();
     }
 
+    public boolean addLending(Lending lending) {
+        try {
+            this.lendingList.put(String.valueOf(lending.getLendingUuid()), lending);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
     public HashMap<String, Lending> getLendingList() {
         return lendingList;
     }
