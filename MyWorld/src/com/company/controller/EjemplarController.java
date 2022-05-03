@@ -10,12 +10,17 @@ public class EjemplarController {
 
     static EjemplarList lista = new EjemplarList();
 
-    public static void createEjemplar(String titulo, String author){
-            Ejemplar ejemplar = new Ejemplar(titulo, author);
-            lista.add(ejemplar);
-
-        }
+    public static void createEjemplar(String titulo, String author) {
+        Ejemplar ejemplar = new Ejemplar(titulo, author);
+        lista.add(ejemplar);
     }
+
+    public static EjemplarList getEjemplares() {
+        return lista;
+    }
+}
+
+
 
 
 
