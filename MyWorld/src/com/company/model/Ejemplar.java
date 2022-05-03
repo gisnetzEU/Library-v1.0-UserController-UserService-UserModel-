@@ -1,23 +1,26 @@
 package com.company.model;
 
 import java.util.Date;
-import java.util.Objects;
+import java.util.UUID;
 
 public class Ejemplar {
 
-    private final String sku;
+    private final UUID sku;
     private String ejemplarTitle;
     private String author;
     private final Date dateOfAdquisition;
+    private boolean available;
 
-    public Ejemplar (String itemTitle){
-        dateOfAdquisition = new Date();
-        sku = String.valueOf(Objects.hash(itemTitle, dateOfAdquisition));
+    public Ejemplar (String itemTitle, String author){
         this.ejemplarTitle = itemTitle;
+        this.author = author;
+        this.dateOfAdquisition = new Date();
+        this.sku = UUID.randomUUID();
+        this.available = true;
 
     }
 
-    public String getSku() {
+    public UUID getSku() {
         return sku;
     }
 
@@ -39,14 +42,20 @@ public class Ejemplar {
         this.ejemplarTitle = itemTitle;
     }
 
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
+
     public Date getDateOfAdquisition() {
 
         return dateOfAdquisition;
     }
 
-    @Override
-    public int hashCode() {
 
-        return Objects.hash(this.ejemplarTitle, this.dateOfAdquisition);
-    }
+
+
 }
