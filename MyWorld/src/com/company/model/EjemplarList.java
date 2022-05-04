@@ -28,7 +28,7 @@ public class EjemplarList {
         return onlyAvailable;
     }
 
-    public Ejemplar getEjemplarById(UUID sku){
+    public Ejemplar findBySku(UUID sku){
         Ejemplar chosenEjemplar = null;
         for (Map.Entry<UUID, Ejemplar> entry : ejemplares.entrySet()) {
             if (entry.getValue().getSku().equals(sku)){
