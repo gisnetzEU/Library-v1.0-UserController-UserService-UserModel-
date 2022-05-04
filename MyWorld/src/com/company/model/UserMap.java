@@ -1,6 +1,9 @@
 package com.company.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
 public class UserMap {
 
     private HashMap<String, User> UserList;
@@ -22,6 +25,21 @@ public class UserMap {
         catch(Exception e){
             return false;
         }
+    }
+
+    public User getUserById(String userId) {
+        return this.UserList.get(userId);
+    }
+
+    public List<User> getActiveUsers(){
+        List<User> list = new ArrayList<User>(UserList.values());
+        List<User> filteredList = new ArrayList<User>();
+        for (User user: list){
+            if(user.getStatus() == "enabled"){
+                filteredList.add(user);
+            }
+        }
+        return filteredList;
     }
 
     public HashMap<String, User> getUserList() {
