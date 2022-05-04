@@ -55,6 +55,11 @@ public class Ejemplar {
         return dateOfAdquisition;
     }
 
+    @Override
+    public String toString(){
+        return this.getSku()  + " - " + this.getEjemplarTitle() + " - " + this.getAuthor() + " - Available: " + this.isAvailable();
+    }
+
 
 
 
