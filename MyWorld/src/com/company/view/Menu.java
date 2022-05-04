@@ -32,6 +32,7 @@ public class Menu {
         //print mini-menu with 1 option + quit
         //Utilities.clearConsole();
         System.out.println("1-Newlending");
+        System.out.println("2-listLendings");
         System.out.println("0-Back");
     }
 

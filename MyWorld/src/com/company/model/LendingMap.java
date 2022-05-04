@@ -33,8 +33,12 @@ public class LendingMap {
 
     @Override
     public String toString() {
-        return "LendingMap{" +
-                "lendingList=" + lendingList +
-                '}';
+        String lendingsList = "Lendings Map:\n";
+        if(!this.lendingList.isEmpty()) {
+            for(Lending lending : this.lendingList.values()) {
+                lendingsList += lending.toString() + "\n";
+            }
+        }
+        return lendingsList;
     }
 }
