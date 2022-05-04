@@ -1,5 +1,6 @@
 package com.company.frontcontroller;
 
+import com.company.controller.EjemplarController;
 import com.company.controller.LendingController;
 import com.company.controller.UserController;
 
@@ -16,6 +17,7 @@ public class FrontController {
         else if (request.get("operation").equals( "createLending")) response = LendingController.createLending(request);
         else if (request.get("operation").equals( "listLendings")) response = LendingController.listLendings();
         else if (request.get("operation").equals( "listUsers")) response = UserController.listUsers();
+        else if (request.get("operation").equals( "listItems")) response = EjemplarController.listItems();
 
         System.out.println(response);
 
