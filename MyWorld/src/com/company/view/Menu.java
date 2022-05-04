@@ -25,6 +25,7 @@ public class Menu {
         //print mini-menu with 1 option + quit
         //Utilities.clearConsole();
         System.out.println("1-Newitem");
+        System.out.println("2-listItems");
         System.out.println("0-Back");
     }
 

@@ -94,6 +94,8 @@ public class IOView {
             } else if (command.equals("Newitem")) {
                 //call-operation to create new item
                 //createItem(reader);
+            } else if (command.equalsIgnoreCase("listItems")){
+                listEjemplares(reader);
             } else System.out.println("Unknown command");
         }
         releaseLoopView(reader);
@@ -177,6 +179,18 @@ public class IOView {
         System.out.println("Users: " + createListUsersResponse.get("message") + "\n");
 
         return createListUsersStatus;
+    }
+
+    private static String listEjemplares(Scanner reader) {
+        HashMap<String, String> createItemsRequest = new HashMap<>();
+        createItemsRequest.put("operation", "listItems");
+
+        HashMap<String, String> createListEjemplaresResponse = FrontController.mainLoopController(createItemsRequest);
+        String createListEjemplaresStatus = createListEjemplaresResponse.get("status");
+        System.out.println("status list items: " + createListEjemplaresStatus + "\n");
+        System.out.println("Items: " + createListEjemplaresResponse.get("message") + "\n");
+
+        return createListEjemplaresStatus;
     }
 
 }
