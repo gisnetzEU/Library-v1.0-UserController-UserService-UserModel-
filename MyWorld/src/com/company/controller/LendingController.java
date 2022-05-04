@@ -3,6 +3,7 @@ package com.company.controller;
 import com.company.model.*;
 
 import java.util.HashMap;
+import java.util.UUID;
 
 public class LendingController {
 
@@ -17,8 +18,7 @@ public class LendingController {
 
         // Getting user object by id and ejemplar object by id
         User user = users.getUserById(userId);
-        //Ejemplar ejemplar = ejemplares.getEjemplarById();
-        Ejemplar ejemplar = new Ejemplar("Test title", "Test author");
+        Ejemplar ejemplar = ejemplares.findBySku(UUID.fromString(ejemplarId));
 
         // Creating the new lending object and put into lendings "map" object
         Lending newLending = new Lending(user, ejemplar);
