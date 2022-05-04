@@ -1,10 +1,11 @@
 package com.company.model;
 
 import java.util.Objects;
+import java.util.UUID;
 
 public class User {
 
-    int idNumber;
+    UUID idNumber;
     String name;
     String surname;
     String birthdate;
@@ -14,7 +15,7 @@ public class User {
     String status;
 
     public User(String name, String surname, String birthdate, String address, String email, String phoneNumber) {
-        this.idNumber = Objects.hash();
+        this.idNumber = UUID.randomUUID();
         this.name = name;
         this.surname = surname;
         this.birthdate = birthdate;
@@ -24,7 +25,7 @@ public class User {
         this.status = "enabled";
     }
 
-    public int getIdNumber() {
+    public UUID getIdNumber() {
         return idNumber;
     }
 
@@ -98,5 +99,19 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(getIdNumber(), getName(), getSurname(), getBirthdate(), getAddress(), getEmail(), getPhoneNumber(), getStatus());
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "idNumber=" + idNumber +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", birthdate='" + birthdate + '\'' +
+                ", address='" + address + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", status='" + status + '\'' +
+                '}';
     }
 }

@@ -18,7 +18,7 @@ public class IOView {
         //just for having some users to work with them
         //to-do: create a JSON to import when boot soft
         //or just a DB
-        //UserController.createFakeUsers();
+        UserController.createFakeUsers();
         while (true) {
             //print mode menu
             Menu.modeMenu();
@@ -74,6 +74,9 @@ public class IOView {
             } else if (command.equals("Newuser")) {
                 //call-operation to create new user
                 createUser(reader);
+            } else if (command.equals("listUsers")) {
+                //call-operation to list users
+                listUsers(reader);
             } else System.out.println("Unknown command");
         }
         releaseLoopView(reader);
@@ -162,6 +165,18 @@ public class IOView {
         System.out.println("status lending: " + createLendingStatus + "\n");
 
         return createLendingStatus;
+    }
+
+    private static String listUsers(Scanner reader) {
+        HashMap<String, String> createLendingRequest = new HashMap<>();
+        createLendingRequest.put("operation", "listUsers");
+
+        HashMap<String, String> createListUsersResponse = FrontController.mainLoopController(createLendingRequest);
+        String createListUsersStatus = createListUsersResponse.get("status");
+        System.out.println("status list users: " + createListUsersStatus + "\n");
+        System.out.println("Users: " + createListUsersResponse.get("message") + "\n");
+
+        return createListUsersStatus;
     }
 
 }

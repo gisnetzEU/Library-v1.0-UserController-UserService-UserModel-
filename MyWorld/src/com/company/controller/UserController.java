@@ -36,6 +36,20 @@ public class UserController {
         return createUserResponse;
     }
 
+    public static HashMap<String, String> listUsers() {
+        String usersList = users.toString();
+        HashMap<String, String> listUsersResponse = new HashMap<>();
+        listUsersResponse.put("response", "listUsersResponse");
+        if(usersList != null) {
+            listUsersResponse.put("status", "List exists");
+            listUsersResponse.put("message", usersList);
+        } else {
+            listUsersResponse.put("status", "List doesnt's exists");
+            listUsersResponse.put("message", "No users");
+        }
+        return listUsersResponse;
+    }
+
     public static void createFakeUsers() {
         //just to work with them, no having a void arraylist
         User newUser1 = new User("Alex", "Pixel", "1987-07-30", "Muntaner 555, 08032, Barcelona", "alex.pixel@gmail.com","619111435");

@@ -16,8 +16,9 @@ public class LendingController {
         String ejemplarId = request.get("ejemplarId");
 
         // Getting user object by id and ejemplar object by id
-        User user = users.getUserById();
-        Ejemplar ejemplar = ejemplares.getEjemplarById();
+        User user = users.getUserById(userId);
+        //Ejemplar ejemplar = ejemplares.getEjemplarById();
+        Ejemplar ejemplar = new Ejemplar("Test title", "Test author");
 
         // Creating the new lending object and put into lendings "map" object
         Lending newLending = new Lending(user, ejemplar);

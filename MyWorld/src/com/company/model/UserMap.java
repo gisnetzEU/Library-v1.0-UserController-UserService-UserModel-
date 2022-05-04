@@ -18,11 +18,9 @@ public class UserMap {
 
     public boolean addUser(User user) {
         try {
-
             this.UserList.put(String.valueOf(user.getIdNumber()), user);
             return true;
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             return false;
         }
     }
@@ -31,15 +29,14 @@ public class UserMap {
         return this.UserList.get(userId);
     }
 
-    public List<User> getActiveUsers(){
-        List<User> list = new ArrayList<User>(UserList.values());
-        List<User> filteredList = new ArrayList<User>();
-        for (User user: list){
-            if(user.getStatus() == "enabled"){
-                filteredList.add(user);
+    public HashMap<String,User> getActiveUsers() {
+        HashMap<String, User> activeUsersMap = null;
+        for (User user : this.UserList.values()) {
+            if (user.getStatus().equals("enabled")) {
+                activeUsersMap.put(String.valueOf(user.getIdNumber()), user);
             }
         }
-        return filteredList;
+        return activeUsersMap;
     }
 
     public HashMap<String, User> getUserList() {
@@ -52,8 +49,12 @@ public class UserMap {
 
     @Override
     public String toString() {
-        return "UserMap{" +
-                "UserList=" + UserList +
-                '}';
+        String usersList = "Users Map:\n";
+        if(!this.UserList.isEmpty()) {
+            for(User user : this.UserList.values()) {
+                usersList += user.toString() + "\n";
+            }
+        }
+        return usersList;
     }
 }
