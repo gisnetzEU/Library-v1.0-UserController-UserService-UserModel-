@@ -174,7 +174,7 @@ public class IOView {
         HashMap<String, String> createListUsersResponse = FrontController.mainLoopController(createLendingRequest);
         String createListUsersStatus = createListUsersResponse.get("status");
         System.out.println("status list users: " + createListUsersStatus + "\n");
-        System.out.println("Users: " + createListUsersResponse.get("message") + "\n");
+        //System.out.println("Users: " + createListUsersResponse.get("message") + "\n");
 
         return createListUsersStatus;
     }
