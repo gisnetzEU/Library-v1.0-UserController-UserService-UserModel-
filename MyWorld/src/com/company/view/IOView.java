@@ -114,6 +114,9 @@ public class IOView {
             } else if (command.equals("Newlending")) {
                 //call-operation to create new lending
                 createLending(reader);
+            } else if (command.equals("listLendings")) {
+                //call-operation to list users
+                listLendings(reader);
             } else System.out.println("Unknown command");
         }
         releaseLoopView(reader);
@@ -150,7 +153,7 @@ public class IOView {
 
     private static String createLending(Scanner reader) {
         //Let s introduce data to create a Lending
-        //TODO mostrar usuarios enabled
+        listUsers(reader);
         String userId = Utilities.ask(reader, "User Id?");
         //TODO mostrar ejemplares disponibles
         String ejemplarId = Utilities.ask(reader, "Ejemplar Id?");
@@ -170,16 +173,28 @@ public class IOView {
     }
 
     private static String listUsers(Scanner reader) {
-        HashMap<String, String> createLendingRequest = new HashMap<>();
-        createLendingRequest.put("operation", "listUsers");
+        HashMap<String, String> createUsersRequest = new HashMap<>();
+        createUsersRequest.put("operation", "listUsers");
 
-        HashMap<String, String> createListUsersResponse = FrontController.mainLoopController(createLendingRequest);
+        HashMap<String, String> createListUsersResponse = FrontController.mainLoopController(createUsersRequest);
         String createListUsersStatus = createListUsersResponse.get("status");
         System.out.println("status list users: " + createListUsersStatus + "\n");
         //System.out.println("Users: " + createListUsersResponse.get("message") + "\n");
 
         return createListUsersStatus;
     }
+
+
+    private static String listLendings(Scanner reader) {
+        HashMap<String, String> createLendingRequest = new HashMap<>();
+        createLendingRequest.put("operation", "listLendings");
+
+        HashMap<String, String> createListLendingsResponse = FrontController.mainLoopController(createLendingRequest);
+        String createListLendingsStatus = createListLendingsResponse.get("status");
+        System.out.println("status list lendings: " + createListLendingsStatus + "\n");
+        //System.out.println("Lendings: " + createListLendingsResponse.get("message") + "\n");
+
+        return createListLendingsStatus;
 
     private static String listEjemplares(Scanner reader) {
         HashMap<String, String> createItemsRequest = new HashMap<>();
@@ -191,6 +206,7 @@ public class IOView {
         System.out.println("Items: " + createListEjemplaresResponse.get("message") + "\n");
 
         return createListEjemplaresStatus;
+
     }
 
 }
