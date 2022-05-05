@@ -198,7 +198,7 @@ public class IOView {
         HashMap<String, String> createListUsersResponse = FrontController.mainLoopController(createUsersRequest);
         String createListUsersStatus = createListUsersResponse.get("status");
         System.out.println("status list users: " + createListUsersStatus + "\n");
-        //System.out.println("Users: " + createListUsersResponse.get("message") + "\n");
+        System.out.println("Users: " + createListUsersResponse.get("message") + "\n");
 
         return createListUsersStatus;
     }
@@ -211,10 +211,11 @@ public class IOView {
         HashMap<String, String> createListLendingsResponse = FrontController.mainLoopController(createLendingRequest);
         String createListLendingsStatus = createListLendingsResponse.get("status");
         System.out.println("status list lendings: " + createListLendingsStatus + "\n");
-        //System.out.println("Lendings: " + createListLendingsResponse.get("message") + "\n");
+        System.out.println("Lendings: " + createListLendingsResponse.get("message") + "\n");
 
         return createListLendingsStatus;
     }
+
     private static String listEjemplares(Scanner reader) {
         HashMap<String, String> createItemsRequest = new HashMap<>();
         createItemsRequest.put("operation", "listItems");
