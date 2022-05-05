@@ -154,8 +154,10 @@ public class IOView {
         //Let s introduce data to create a Lending
         listUsers(reader);
         String userId = Utilities.ask(reader, "User Id?");
+        // TODO check user exists and is ENABLED to get a book; if not exit or ask again? separate method
         listEjemplares(reader);
         String ejemplarId = Utilities.ask(reader, "Ejemplar Id?");
+        // TODO check if ejemplar exists and is ENABLED to be lend; if no exit or ask again? separate method
         HashMap<String, String> createLendingRequest = new HashMap<>();
 
         //fill createLending request data hashmap object

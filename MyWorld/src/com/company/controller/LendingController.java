@@ -28,6 +28,7 @@ public class LendingController {
         boolean statusOperation = false;
         if ((user != null) && (ejemplar != null)) {
             Lending newLending = new Lending(user, ejemplar);
+            // Todo change Ejemplar status to available false
             statusOperation = lendings.addLending(newLending);
         }
         createLendingResponse.put("status", "fail");
