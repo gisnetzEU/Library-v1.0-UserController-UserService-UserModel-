@@ -20,7 +20,7 @@ public class EjemplarController {
         String itemsList = lista.toString();
         HashMap<String, String> listItemsResponse = new HashMap<>();
         listItemsResponse.put("response", "listUsersResponse");
-        if(itemsList != null) {
+        if(!itemsList.equals("Items Map:\n")) {
             listItemsResponse.put("status", "List exists");
             listItemsResponse.put("message", itemsList);
         } else {

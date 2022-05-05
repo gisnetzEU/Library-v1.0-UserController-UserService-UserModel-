@@ -46,7 +46,7 @@ public class LendingController {
         String lendingsList = lendings.toString();
         HashMap<String, String> listLendingsResponse = new HashMap<>();
         listLendingsResponse.put("response", "listLendingsResponse");
-        if(lendingsList != null) {
+        if(!lendingsList.equals("Lendings Map:\n")) {
             listLendingsResponse.put("status", "List exists");
             listLendingsResponse.put("message", lendingsList);
         } else {

@@ -40,7 +40,7 @@ public class UserController {
         String usersList = users.toString();
         HashMap<String, String> listUsersResponse = new HashMap<>();
         listUsersResponse.put("response", "listUsersResponse");
-        if(usersList != null) {
+        if(!usersList.equals("Users Map:\n")) {
             listUsersResponse.put("status", "List exists");
             listUsersResponse.put("message", usersList);
         } else {
