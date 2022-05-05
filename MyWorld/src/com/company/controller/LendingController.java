@@ -16,26 +16,32 @@ public class LendingController {
         String userId = request.get("userId");
         String ejemplarId = request.get("ejemplarId");
 
-        // Getting user object by id and ejemplar object by id
-        User user = users.getUserById(userId);
-        //Ejemplar ejemplar = ejemplares.findBySku(UUID.fromString(ejemplarId));
-        Ejemplar ejemplar = new Ejemplar("Alice", "Alice");
-
-        // Creating the new lending object and put into lendings "map" object
-        Lending newLending = new Lending(user, ejemplar);
-        boolean statusOperation = lendings.addLending(newLending);
-
         // Building response HashMap
         HashMap<String, String> createLendingResponse = new HashMap<>();
         createLendingResponse.put("response", "createLendingResponse");
+
+        // Getting user object by id and ejemplar object by id
+        User user = users.getUserById(userId);
+        Ejemplar ejemplar = ejemplares.findBySku(UUID.fromString(ejemplarId));
+
+        // Creating the new lending object and put into lendings "map" object
+        boolean statusOperation = false;
+        if ((user != null) && (ejemplar != null)) {
+            Lending newLending = new Lending(user, ejemplar);
+            statusOperation = lendings.addLending(newLending);
+        }
+        createLendingResponse.put("status", "fail");
 
         // Add response HashMap data
         if (statusOperation) {
             createLendingResponse.put("status", "success");
             createLendingResponse.put("message", "Lending created successfully.");
+        } else if (user == null) {
+            createLendingResponse.put("message", "User don't exists.");
+        } else if (ejemplar == null) {
+            createLendingResponse.put("message", "Reference item don't exists.");
         } else {
-            createLendingResponse.put("status", "fail");
-            createLendingResponse.put("message", "Failure in lending creation process.");
+            createLendingResponse.put("message", "Failure in creating lending.");
         }
 
         return createLendingResponse;
