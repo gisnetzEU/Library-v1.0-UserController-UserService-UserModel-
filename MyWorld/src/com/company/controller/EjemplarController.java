@@ -11,9 +11,21 @@ public class EjemplarController {
 
     static EjemplarList lista = new EjemplarList();
 
-    public static void createEjemplar(String titulo, String author) {
-        Ejemplar ejemplar = new Ejemplar(titulo, author);
-        lista.add(ejemplar);
+    public static HashMap<String, String> createEjemplar(HashMap<String, String> dataToCreateItem) {
+        String title = dataToCreateItem.get("title");
+        String author = dataToCreateItem.get("author");
+
+        Ejemplar ejemplarCreated = new Ejemplar(title, author);
+
+        boolean statusOperation = lista.add(ejemplarCreated);
+
+        HashMap<String, String> createItemResponse = new HashMap<>();
+        createItemResponse.put("response", "createItemResponse");
+
+        if (statusOperation) createItemResponse.put("status", "created");
+        else createItemResponse.put("status", "not created");
+
+        return createItemResponse;
     }
 
     public static HashMap<String, String> listItems() {
