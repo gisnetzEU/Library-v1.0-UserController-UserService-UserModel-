@@ -13,8 +13,13 @@ public class EjemplarList {
 
     }
 
-    public void add (Ejemplar ejemplar){
-        ejemplares.put(ejemplar.getSku(), ejemplar);
+    public boolean add (Ejemplar ejemplar){
+        try {
+            this.ejemplares.put(ejemplar.getSku(), ejemplar);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public HashMap<UUID, Ejemplar> onlyAvailable(){
