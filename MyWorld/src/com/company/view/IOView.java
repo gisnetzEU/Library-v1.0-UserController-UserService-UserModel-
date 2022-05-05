@@ -89,11 +89,10 @@ public class IOView {
             Menu.itemsMenu();
             String command = Utilities.ask(reader, "Option?");
 
-            if (command.equals("Back")) {
+            if (command.equalsIgnoreCase("Back")) {
                 break;
-            } else if (command.equals("Newitem")) {
-                //call-operation to create new item
-                //createItem(reader);
+            } else if (command.equalsIgnoreCase("Newitem")) {
+                createItem(reader);
             } else if (command.equalsIgnoreCase("listItems")){
                 listEjemplares(reader);
             } else System.out.println("Unknown command");
@@ -172,6 +171,26 @@ public class IOView {
         return createLendingStatus;
     }
 
+    private static String createItem(Scanner reader) {
+        //Let s introduce data to create a User
+        String title = Utilities.ask(reader, "Title?");
+        String author = Utilities.ask(reader, "Author?");
+        //create hashmap to send data to controller
+        HashMap<String, String> createItemRequest = new HashMap<>();
+        //fill data hashmap object
+        createItemRequest.put("operation", "createItem");
+        createItemRequest.put("title", title);
+        createItemRequest.put("author", author);
+
+        //send data to controller and get the response
+        HashMap<String, String> createItemResponse = FrontController.mainLoopController(createItemRequest);
+        String createUserStatus = createItemResponse.get("status");
+        System.out.println("status item: " + createUserStatus + "\n");
+
+        return createUserStatus;
+
+    }
+
     private static String listUsers(Scanner reader) {
         HashMap<String, String> createUsersRequest = new HashMap<>();
         createUsersRequest.put("operation", "listUsers");
@@ -195,7 +214,7 @@ public class IOView {
         //System.out.println("Lendings: " + createListLendingsResponse.get("message") + "\n");
 
         return createListLendingsStatus;
-
+    }
     private static String listEjemplares(Scanner reader) {
         HashMap<String, String> createItemsRequest = new HashMap<>();
         createItemsRequest.put("operation", "listItems");
