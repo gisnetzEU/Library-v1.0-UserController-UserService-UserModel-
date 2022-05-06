@@ -42,6 +42,26 @@ public class EjemplarController {
         return listItemsResponse;
     }
 
+    public static HashMap<String, String> listOnlyAvailableItems() {
+        String itemsList = "Items Available:\n";
+        if(!lista.onlyAvailable().isEmpty()) {
+            for(Ejemplar ejemplar : lista.onlyAvailable().values()) {
+                itemsList += ejemplar.toString() + "\n";
+            }
+        }
+
+        HashMap<String, String> listItemsResponse = new HashMap<>();
+        listItemsResponse.put("response", "listUsersResponse");
+        if(!itemsList.equals("Items Available:\n")) {
+            listItemsResponse.put("status", "List exists");
+            listItemsResponse.put("message", itemsList);
+        } else {
+            listItemsResponse.put("status", "List doesnt's exists");
+            listItemsResponse.put("message", "No items");
+        }
+        return listItemsResponse;
+    }
+
     public static EjemplarList getEjemplares() {
         return lista;
     }
