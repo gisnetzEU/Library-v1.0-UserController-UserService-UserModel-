@@ -47,6 +47,10 @@ public class UserMap {
         UserList = userList;
     }
 
+    public static HashMap<String, User> listEnabledUsers(){
+        return null;
+    }
+
     @Override
     public String toString() {
         String usersList = "Users Map:\n";
