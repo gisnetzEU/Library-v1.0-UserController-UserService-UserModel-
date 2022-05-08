@@ -1,12 +1,12 @@
 package com.company.controller;
 
-import com.company.model.Ejemplar;
 import com.company.model.User;
 import com.company.model.UserMap;
 import com.company.service.UserService;
+import com.company.utils.Utilities;
 
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.UUID;
 
 public class UserController {
     //just an arraylist to store users
@@ -45,36 +45,41 @@ public class UserController {
             listUsersResponse.put("status", "List exists");
             listUsersResponse.put("message", usersList);
         } else {
-            listUsersResponse.put("status", "List doesnt's exists");
+            listUsersResponse.put("status", "List doesn't exists");
             listUsersResponse.put("message", "No users");
         }
         return listUsersResponse;
     }
 
     public static HashMap<String, String> listEnabledUsers() {
-        String enabledUserList = "Enable users:\n";
-        if (!users.getActiveUsers().isEmpty()) {
-            for (User user : users.getActiveUsers().values()) {
-                enabledUserList += user.toString() + "\n";
-            }
-        }
+        String enabledUserList = Utilities.listEnabledUsersToString(users);
 
         HashMap<String, String> listUsersResponse = new HashMap<>();
-        listUsersResponse.put("response", "listUsersResponse");
-        if (!enabledUserList.equals("Items Available:\n")) {
+        listUsersResponse.put("response", "listEnabledUsersResponse");
+        if (!enabledUserList.equals("Enable users:\n")) {
             listUsersResponse.put("status", "List exists");
             listUsersResponse.put("message", enabledUserList);
         } else {
-            listUsersResponse.put("status", "List doesnt's exists");
-            listUsersResponse.put("message", "No items");
+            listUsersResponse.put("status", "List doesn't exists");
+            listUsersResponse.put("message", "No users");
         }
         return listUsersResponse;
     }
 
-    /*
-    public static HashMap<String, String> checkUserEnabledByUUID(HashMap<String, String> dataToCheckUser){
-        return null;
-    }*/
+    public static HashMap<String, String> checkUserEnabledByUUID(HashMap<String, String> dataToCheckUser) {
+        UUID uuid = UUID.fromString(dataToCheckUser.get("uuid"));
+
+        HashMap<String, String> response = new HashMap<>();
+        response.put("response", "checkUserEnabledByUUID");
+        if (!UserService.checkUserEnabledByUUID(users, uuid)) {
+            response.put("status", "Enabled user");
+            response.put("message", String.valueOf(true));
+        } else {
+            response.put("status", "Not enabled user");
+            response.put("message", String.valueOf(false));
+        }
+        return response;
+    }
 
     public static void createFakeUsers() {
         //just to work with them, no having a void arraylist

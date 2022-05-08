@@ -1,19 +1,13 @@
 package com.company.service;
 
-import com.company.model.User;
+import com.company.model.UserMap;
 
-import java.util.ArrayList;
+import java.util.UUID;
 
 public class UserService {
 
-    /*
-    public static String listEnabledUsersToString(){
-        return null;
+    public static boolean checkUserEnabledByUUID(UserMap users, UUID userUuid) {
+        return users.isUserEnabled(userUuid);
     }
 
-    public static boolean checkUserEnabledByUUID(userUUID){
-        return false;
-    }
-
-     */
 }
